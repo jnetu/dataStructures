@@ -1,16 +1,17 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
 /**
  * This is a classic Bag(Saco) implementation with Array
- * @implNote - it's an Array Bag, so it be ordered by Array Java logic
+ * t's an Array Bag, so it be ordered by Array Java logic
+ * @param <ITEM> The type of elements stored in the Bag.
  */
 public class Bag<ITEM> implements DataStructure<ITEM> {
     private final static int DEFAULT_SIZE = 2; // internal ArraySize
     private ITEM[] bag; // Array
     private int size; // Used array size
 
-    /*
-     * Constructor empty bag
+    /**
+     *  Constructor empty bag
      */
     public Bag() {
         bag = (ITEM[]) new Object[DEFAULT_SIZE];
@@ -36,8 +37,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     /**
      * Removes and returns an object from the data structure.
      *
-     * @return The removed object.
-     * @return null If the data structure is empty.
+     * @return The removed object. null If the data structure is empty.
      */
     @Override
     public ITEM remove() {
@@ -75,8 +75,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     /**
      * returns the first object that will removed put dont remove
      *
-     * @return The removed object.
-     * @return null If the data structure is empty.
+     * @return The removed object. null If the data structure is empty.
      */
     @Override
     public ITEM peek() {
@@ -85,7 +84,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
 
     /**
      * Returns a string of the bag.
-     * @implNote - A bag dont have order... but its a ArrayBag implementation
+     * A bag dont have order... but its a ArrayBag implementation
      * @return A string representation of the data structure.
      */
     @Override
@@ -116,7 +115,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
 
     /**
      * Returns a string of the data structure in reverse order.
-     * @implNote - A bag dont have order... but its a ArrayBag implementation
+     * A bag dont have order... but its a ArrayBag implementation
      * @return A string representation of the reversed data structure.
      */
     @Override

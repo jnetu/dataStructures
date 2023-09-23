@@ -1,4 +1,4 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
 /**
  * This interface represents a generic data structure that can store objects. It

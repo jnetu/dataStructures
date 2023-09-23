@@ -1,9 +1,20 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
 /**
  * Main Function to see functions DataStructure created
  */
 public class Main {
+
+    /**
+     * Main default constructor java
+     */
+    public Main(){
+
+    }
+    /**
+     * Java jar entry point
+     * @param args - java -jar arguments
+     */
     public static void main(String[] args) {
         output("Stack");
         stackDemonstration();
