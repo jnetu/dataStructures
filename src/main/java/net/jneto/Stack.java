@@ -64,32 +64,13 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
     @SuppressWarnings("unchecked")
     private void resize() {
         if ((float) size / stack.length <= 0.25) { // Decrease
-            ITEM[] auxStack;
-            int newSize;
-            if (2 % stack.length == 0) {
-                newSize = stack.length / 2 + 1;
-            } else {
-                newSize = stack.length / 2;
-            }
-            auxStack = (ITEM[]) new Object[newSize];
-            for (int i = 0; i < auxStack.length; i++) {
-                auxStack[i] = stack[i];
-            }
-            stack = (ITEM[]) new Object[newSize];
-            for (int i = 0; i < auxStack.length; i++) {
-                stack[i] = auxStack[i];
-            }
-
+            Common<ITEM> c = new Common<ITEM>();
+            stack = c.resize(stack,false);
             return;
         }
         if (size == stack.length) {//increase
-            int newSize = stack.length * 2;
-            ITEM[] aux = (ITEM[]) new Object[newSize];
-
-            for (int i = 0; i < stack.length; i++) {
-                aux[i] = stack[i];
-            }
-            stack = aux;
+            Common<ITEM> c = new Common<ITEM>();
+            stack = c.resize(stack,true);
         }
     }
 
