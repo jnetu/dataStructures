@@ -5,7 +5,7 @@ Data Structures in Java
 This repository contains a collection of fundamental data structures implemented in Java.   
 It's designed for learning about basic data structures and practicing Java.
 
-release 1.0 -> [Download DataStructures-1.0-release.jar](https://github.com/jnetu/dataStructures/build/libs/DataStructures-1.0-release.jar)
+release 1.0 -> [Download jar file DataStructures-1.0-release.jar](https://github.com/jnetu/dataStructures/blob/master/build/libs/DataStructures-1.0-release.jar)
 
 ## Prerequisites
 
@@ -50,4 +50,12 @@ make sure you have git installed and PATH configured
 2. To run the project, use the following Gradle command:
    ```bash
    java -jar /libs/DataStructures-1.0-release.jar
+   ```
+
+## Create javadoc
+   ```bash
+   .\gradlew javadoc
+   ```
+   ```bash
+   gradle javadoc
    ```
