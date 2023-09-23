@@ -9,6 +9,8 @@ public class Main {
         stackDemonstration();
         output("Queue");
         queueDemonstration();
+        output("Bag");
+        bagDemonstration();
     }
 
     private static void queueDemonstration() {
@@ -57,6 +59,48 @@ public class Main {
 
     private static void stackDemonstration(){
         Stack<String> structure = new Stack<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+    }
+    private static void bagDemonstration(){
+        Bag<String> structure = new Bag<String>();
         structure.add("a");
         print(structure);
         structure.add("a");
