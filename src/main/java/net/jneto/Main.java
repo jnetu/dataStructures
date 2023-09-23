@@ -4,16 +4,61 @@ package net.jneto;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        output("Stack");
+        demonstrationStack();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+    }
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
-        }
+    private static void demonstrationStack(){
+        Stack<String> stack = new Stack<String>();
+        stack.add("a");
+        print(stack);
+        stack.add("a");
+        print(stack);
+        stack.add("a");
+        print(stack);
+        stack.add("a");
+        print(stack.show());
+        print(stack);
+        stack.add("b");
+        print(stack.show());
+        print(stack);
+        stack.add("c");
+        print(stack.show());
+        print(stack);
+        stack.add("d");
+        print(stack);
+        stack.add("e");
+        print(stack);
+        stack.add("f");
+        print(stack.show());
+        print(stack.showReverse());
+        print(stack.remove());
+        print(stack.remove());
+        print(stack.show());
+        print(stack.remove());
+        print(stack.remove());
+        print(stack.show());
+        print(stack);
+        stack.add("g");
+        stack.remove();
+        stack.remove();
+        stack.remove();
+        stack.remove();
+        print(stack);
+        stack.remove();
+        stack.remove();
+        stack.remove();
+        print(stack);
+    }
+    private static void output(String name){
+        System.out.println("/*******************************************************");
+        System.out.println("/* " + name + " Demonstration");
+        System.out.println("/*******************************************************");
+
+    }
+
+    private static void print(Object out){
+        System.out.println(out);
     }
 }
