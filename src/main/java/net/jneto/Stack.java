@@ -1,12 +1,10 @@
 package net.jneto;
 
-import java.util.NoSuchElementException;
-
 /**
  * This is a classic Stack(Pilha) implementation with Array
  */
 public class Stack<ITEM> implements DataStructure<ITEM> {
-    private final static  int DEFAULT_SIZE = 2; // internal ArraySize
+    private final static int DEFAULT_SIZE = 2; // internal ArraySize
     private ITEM[] stack; // Array
     private int size; // Used array size
 
@@ -38,12 +36,12 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public ITEM remove() {
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         ITEM item = stack[size - 1];
         size--;
-        if((float)size/stack.length <= 0.25) {
+        if ((float) size / stack.length <= 0.25) {
             resize();
         }
         return item;
@@ -65,21 +63,26 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
      */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if((float)size/stack.length <= 0.25) {//tem que diminuir
+        if ((float) size / stack.length <= 0.25) { // Decrease
             ITEM[] auxStack;
             int newSize;
-            if(2%stack.length==0) {
-                newSize = stack.length/2;
-            }else {
-                newSize = stack.length/2 + 1;
+            if (2 % stack.length == 0) {
+                newSize = stack.length / 2 + 1;
+            } else {
+                newSize = stack.length / 2;
             }
             auxStack = (ITEM[]) new Object[newSize];
-            System.arraycopy(stack, 0, auxStack, 0, auxStack.length);
-            stack =(ITEM[]) new Object[newSize];
-            System.arraycopy(auxStack, 0, stack, 0, auxStack.length);
+            for (int i = 0; i < auxStack.length; i++) {
+                auxStack[i] = stack[i];
+            }
+            stack = (ITEM[]) new Object[newSize];
+            for (int i = 0; i < auxStack.length; i++) {
+                stack[i] = auxStack[i];
+            }
+
             return;
         }
-        if(size == stack.length) {//tem que aumentar
+        if (size == stack.length) {//increase
             int newSize = stack.length * 2;
             ITEM[] aux = (ITEM[]) new Object[newSize];
 

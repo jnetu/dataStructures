@@ -6,8 +6,6 @@ package net.jneto;
  * obtaining the size of the data structure. Also used in Sort Algorithms
  *
  * @param <ITEM> The type of objects to be stored in the data structure.
- *
- *
  * @author joao neto
  */
 
