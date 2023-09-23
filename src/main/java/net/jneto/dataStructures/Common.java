@@ -1,6 +1,19 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
+/**
+ * Comons methods used by data structures
+ * @param <ITEM> The type of elements implemented.
+ */
 public class Common<ITEM> {
+
+
+    /**
+     * Default constructor to use not statics Common method
+     */
+    public Common(){
+        //dont need initialization
+    }
+
     /**
      *
      * The resize method is a common method used by data Structures

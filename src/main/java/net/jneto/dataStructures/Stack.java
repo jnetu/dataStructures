@@ -1,14 +1,15 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
 /**
  * This is a classic Stack(Pilha) implementation with Array
+ * @param <ITEM> The type of elements stored in the Stack.
  */
 public class Stack<ITEM> implements DataStructure<ITEM> {
     private final static int DEFAULT_SIZE = 2; // internal ArraySize
     private ITEM[] stack; // Array
     private int size; // Used array size
 
-    /*
+    /**
      * Constructor empty stack
      */
     public Stack() {

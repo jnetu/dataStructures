@@ -1,5 +1,9 @@
-package net.jneto;
+package net.jneto.dataStructures;
 
+/**
+ * This is a classic Queue(Fila) implementation with Array
+ * @param <ITEM> The type of elements stored in the Queue.
+ */
 public class Queue<ITEM> implements DataStructure<ITEM> {
     private static final int DEFAULT_SIZE = 2; // internal ArraySize
     private ITEM[] queue; // Array
@@ -7,6 +11,10 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
     private int front; // First index
     private int end; // Last index
 
+
+    /**
+     * Constructor empty queue
+     */
     @SuppressWarnings("unchecked")
     public Queue() {
         queue = (ITEM[]) new Object[DEFAULT_SIZE];

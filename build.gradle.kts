@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "net.jneto"
-version = "1.0-SNAPSHOT"
+version = "1.0-release"
 
 repositories {
     mavenCentral()
@@ -21,6 +21,6 @@ tasks.test {
 
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "net.jneto.Main" //  java -jar .\DataStructures-1.0-SNAPSHOT.jar
+        attributes["Main-Class"] = "net.jneto.dataStructures.Main"
     }
 }
