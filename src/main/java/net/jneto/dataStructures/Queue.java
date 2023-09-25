@@ -20,7 +20,7 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
         queue = (ITEM[]) new Object[DEFAULT_SIZE];
         size = 0;
         front = 0;
-        end = -1;
+        end = 0;
     }
 
     @Override
@@ -28,8 +28,8 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
         if (size >= queue.length) {
             resize();
         }
-        end = (end + 1) % queue.length;
         queue[end] = item;
+        end = size + 1;
         size++;
     }
 
