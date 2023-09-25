@@ -243,7 +243,31 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public String showReverse() {
-        return null;
+        StringBuilder builder = new StringBuilder();
+        String out = "";
+        boolean isFirst = true;
+        Stack<ITEM> aux = new Stack<ITEM>();
+        ITEM element;
+
+        while (!isEmpty()) { // removing
+
+            element = remove();
+            if (isFirst) {
+                //out = out + element;
+                builder.append(element);
+                isFirst = false;
+            } else {
+                builder.append(", ").append(element);
+            }
+
+            aux.add(element);
+        }
+        while (!aux.isEmpty()) { // adding again
+            element = aux.remove();
+            add(element);
+        }
+
+        return "[" + builder.toString() + "]";
     }
 
     /*
