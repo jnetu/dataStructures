@@ -1,5 +1,9 @@
 package net.jneto.dataStructures;
 
+import net.jneto.dataStructures.Comparator.BiggerIntegerComparator;
+import net.jneto.dataStructures.Comparator.BiggerStringLengthComparator;
+import net.jneto.dataStructures.Comparator.Comparator;
+
 /**
  * Main Function to see functions DataStructure created
  */

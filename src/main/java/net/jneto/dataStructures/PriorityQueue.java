@@ -1,5 +1,7 @@
 package net.jneto.dataStructures;
 
+import net.jneto.dataStructures.Comparator.Comparator;
+
 /**
  * This is a Priority Queue(Fila de prioridade) implementation with Array
  * it use Interface comparator to compare elements and min-heap logic vector
