@@ -5,8 +5,10 @@ Data Structures in Java
 This repository contains a collection of fundamental data structures implemented in Java.   
 It's designed for learning about basic data structures and practicing Java.
 
-release 1.0 -> [Download jar file DataStructures-1.0-release.jar](https://github.com/jnetu/dataStructures/blob/master/build/libs/DataStructures-1.0-release.jar)
-
+- release 1.0 -> [Download jar file DataStructures-1.0-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.0)  
+  - Basic Resizing Array structure Stack, Queue and Bag created 
+- release 1.1 -> [Download jar file DataStructures-1.1-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.1)
+   - Resizing array List basic methods, Resizing array priorityQueue and Deque created
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:

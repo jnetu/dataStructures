@@ -2,6 +2,7 @@ package net.jneto.dataStructures;
 
 /**
  * Comons methods used by data structures
+ *
  * @param <ITEM> The type of elements implemented.
  */
 public class Common<ITEM> {
@@ -10,14 +11,14 @@ public class Common<ITEM> {
     /**
      * Default constructor to use not statics Common method
      */
-    public Common(){
+    public Common() {
         //dont need initialization
     }
 
     /**
-     *
      * The resize method is a common method used by data Structures
      * to resize the Array size of a structure
+     *
      * @param structure - data Structure typed
      * @param increase  - if True - increase Array, if false decrease Array
      * @return structure - new sized structure
