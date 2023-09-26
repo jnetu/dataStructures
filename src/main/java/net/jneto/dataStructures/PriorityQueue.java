@@ -116,7 +116,6 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
             element = remove();
             aux.add(element);
         }
-
         while (!aux.isEmpty()) { // adding again
 
             element = aux.remove();
@@ -140,17 +139,29 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
      */
     @Override
     public String showReverse() {
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder(); // Java 5+ required
+        String out = "";
         boolean isFirst = true;
+        //its impossible to show reverse mode with another priorityQueue lol
+        //PriorityQueue<ITEM> aux = new PriorityQueue<ITEM>(comparator);
+        ITEM[] aux = (ITEM[]) new Object[size];
+        int auxIndex = 0;
+        ITEM element;
+        while (!isEmpty()) { // removing
+            element = remove();
+            aux[auxIndex] = element;
+            auxIndex++;
 
-        for (int i = size - 1; i >= 0; i--) {
-            ITEM element = pqueue[i];
+        }
+        for (int i = auxIndex - 1; i >=0; i--){ //Adding again
+            element = aux[i];
             if (isFirst) {
                 builder.append(element);
                 isFirst = false;
             } else {
                 builder.append(", ").append(element);
             }
+            add(element);
         }
 
         return "[" + builder.toString() + "]";

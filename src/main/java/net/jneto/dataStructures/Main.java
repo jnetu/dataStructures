@@ -34,6 +34,9 @@ public class Main {
         output("Priority queue Array-min-heap based ");
         priorityQueueDemo();
 
+        output("Deque");
+        arrayDequeDemo();
+
     }
 
     private static void arrayQueueDemo() {
@@ -291,16 +294,19 @@ public class Main {
         };
         Comparator<String> cp = new BiggerStringLengthComparator(); //another way into Comparator Interface example
         PriorityQueue<String> pq = new PriorityQueue<String>(stringComparator);
-        pq.add("n");
+        pq.add("n1");
         pq.add("nome maior AAAAAAAAAa");
-        pq.add("b");
+        pq.add("b22");
         pq.add("nome maior CCCCCCCCCc");
-        pq.add("d");
-        pq.add("e");
-        pq.add("f");
+        pq.add("d333");
+        pq.add("e4444");
+        pq.add("f55555");
+        pq.add("g666666");
+        pq.add("a7777777");
         print(pq.peek());
         print(pq);
         print(pq.show());
+        print(pq.showReverse());
         print(pq.remove());
         print(pq.show());
         print(pq.remove());
@@ -329,6 +335,65 @@ public class Main {
 
 
         print(pqint.show());
+    }
+
+    private static void arrayDequeDemo() {
+        Deque<String> structure = new Deque<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.addFront("frontA");
+        structure.addFront("frontB");
+        structure.addFront("frontC");
+        structure.addEnd("endA");
+        structure.addEnd("endB");
+        structure.addEnd("endC");
+        structure.addFront("frontd");
+        structure.addFront("fronte");
+        structure.addFront("frontf");
+        print(structure.show());
+        print(structure.removeFront());
+        print(structure.show());
+        print(structure.removeFront());
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.removeEnd());
     }
     private static void output(String name){
         System.out.println("/*******************************************************");
