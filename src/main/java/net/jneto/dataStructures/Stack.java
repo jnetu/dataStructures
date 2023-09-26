@@ -2,6 +2,7 @@ package net.jneto.dataStructures;
 
 /**
  * This is a classic Stack(Pilha) implementation with Array
+ *
  * @param <ITEM> The type of elements stored in the Stack.
  */
 public class Stack<ITEM> implements DataStructure<ITEM> {
@@ -17,7 +18,7 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
         size = 0;
     }
 
-    /*
+    /**
      * Add Logic FILO
      */
     @Override
@@ -32,7 +33,7 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
 
     }
 
-    /*
+    /**
      * Remove Logic FILO
      */
     @Override
@@ -58,20 +59,19 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
         return size;
     }
 
-    /*
+    /**
      * Method to increase or decrease the stack Array
-     *
      */
     @SuppressWarnings("unchecked")
     private void resize() {
         if ((float) size / stack.length <= 0.25) { // Decrease
             Common<ITEM> c = new Common<ITEM>();
-            stack = c.resize(stack,false);
+            stack = c.resize(stack, false);
             return;
         }
         if (size == stack.length) {//increase
             Common<ITEM> c = new Common<ITEM>();
-            stack = c.resize(stack,true);
+            stack = c.resize(stack, true);
         }
     }
 
@@ -80,7 +80,7 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
         return size == 0 ? null : stack[size - 1];
     }
 
-    /*
+    /**
      * Shows a String with all elements
      *
      * @return String
@@ -112,7 +112,7 @@ public class Stack<ITEM> implements DataStructure<ITEM> {
 
     }
 
-    /*
+    /**
      * Shows a String with all elements in reverse order
      *
      * @return String

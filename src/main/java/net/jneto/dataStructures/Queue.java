@@ -2,6 +2,7 @@ package net.jneto.dataStructures;
 
 /**
  * This is a classic Queue(Fila) implementation with Array
+ *
  * @param <ITEM> The type of elements stored in the Queue.
  */
 public class Queue<ITEM> implements DataStructure<ITEM> {
@@ -24,7 +25,7 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
         if (size >= queue.length) {
             resize();
             add(item);
-        }else{
+        } else {
             queue[size] = item;
             size++;
         }
@@ -109,7 +110,7 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
             aux[auxIndex] = element;
             auxIndex++;
         }
-        for(int i = auxIndex - 1; i >=0; i--){ // adding
+        for (int i = auxIndex - 1; i >= 0; i--) { // adding
             element = aux[i];
             if (isFirst) {
                 builder.append(element);
@@ -123,19 +124,19 @@ public class Queue<ITEM> implements DataStructure<ITEM> {
         return "[" + builder.toString() + "]";
     }
 
-    /*
+    /**
      * Method to increase or decrease the queue Array
      */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if((float) size / queue.length <= 0.25) { //Decrease
+        if ((float) size / queue.length <= 0.25) { //Decrease
             Common<ITEM> c = new Common<ITEM>();
-            queue = c.resize(queue,false);
+            queue = c.resize(queue, false);
             return;
         }
-        if(size >= queue.length){ //increase
+        if (size >= queue.length) { //increase
             Common<ITEM> c = new Common<ITEM>();
-            queue = c.resize(queue,true);
+            queue = c.resize(queue, true);
         }
     }
 

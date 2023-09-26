@@ -3,6 +3,7 @@ package net.jneto.dataStructures;
 
 /**
  * This is a classic ArrayList(Lista) implementation with Array
+ *
  * @param <ITEM> The type of elements stored in the ArrayList.
  */
 public class ArrayList<ITEM> implements DataStructure<ITEM> {
@@ -14,7 +15,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
      * Constructor empty list
      */
     @SuppressWarnings("unchecked")
-    public ArrayList(){
+    public ArrayList() {
         list = (ITEM[]) new Object[DEFAULT_SIZE];
         size = 0;
 
@@ -35,13 +36,14 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     *  A list logic you can put Objects in any position
-     * @param item - The object to be added
+     * A list logic you can put Objects in any position
+     *
+     * @param item  - The object to be added
      * @param index - index where object will be added
      */
     public void add(ITEM item, int index) {
         //INDEX VERIFY
-        if(index > list.length || index < 0){
+        if (index > list.length || index < 0) {
             return;
         }
         //VERIFY SPACE
@@ -62,7 +64,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
         //list[index==1] = new item
         //[0,2,1,2,3,4,5, null, null, null, null, null, null, null, null, null, null]
 
-        for(int i = size; i > index; i--){
+        for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
         }
         list[index] = item;
@@ -70,11 +72,12 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     *  A list logic you can get Objects in any position
+     * A list logic you can get Objects in any position
+     *
      * @param index - index where object will be returned
      */
     public ITEM get(int index) {
-        if(index > list.length || index < 0){
+        if (index > list.length || index < 0) {
             return null;
         }
         return list[index];
@@ -89,13 +92,13 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     @Override
     public ITEM remove() {
 
-        if(isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         ITEM item = list[size - 1];
         size--;
 
-        if((float) size / list.length <= 0.25){
+        if ((float) size / list.length <= 0.25) {
             resize();
         }
 
@@ -103,11 +106,12 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     *  A list logic you can remove Objects in any position
+     * A list logic you can remove Objects in any position
+     *
      * @param index - index where object will be removed
      */
     public ITEM remove(int index) {
-        if(index > list.length || index < 0){
+        if (index > list.length || index < 0) {
             return null;
         }
         //ARRAY REALOC
@@ -121,7 +125,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
 
         ITEM removed = list[index];
         //after 'remove' realoc after removed item
-        for(int i = index; i < size - 1; i++){
+        for (int i = index; i < size - 1; i++) {
             list[i] = list[i + 1];
 
         }
@@ -144,9 +148,9 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
      * @return removed successfully.
      * @throws IllegalStateException If the data structure is empty.
      */
-    public boolean remove(ITEM item){
-        for(int i = 0; i < size; i++){
-            if(list[i] == item || (list[i] != null && list[i].equals(item))){
+    public boolean remove(ITEM item) {
+        for (int i = 0; i < size; i++) {
+            if (list[i] == item || (list[i] != null && list[i].equals(item))) {
                 remove(i);
                 return true;
             }
@@ -162,7 +166,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public boolean isEmpty() {
-        return size <=0;
+        return size <= 0;
     }
 
     /**
@@ -199,7 +203,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
         //[1] --size = 1 list.length = 2
         //peek(0)
         // 1  (list[0])
-        if(index > size || index < 0){
+        if (index > size || index < 0) {
             return null;
         }
         return list[index - 1];
@@ -244,7 +248,6 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     @Override
     public String showReverse() {
         StringBuilder builder = new StringBuilder();
-        String out = "";
         boolean isFirst = true;
         Stack<ITEM> aux = new Stack<ITEM>();
         ITEM element;
@@ -253,7 +256,6 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
 
             element = remove();
             if (isFirst) {
-                //out = out + element;
                 builder.append(element);
                 isFirst = false;
             } else {
@@ -270,21 +272,22 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
         return "[" + builder.toString() + "]";
     }
 
-    /*
+    /**
      * Method to increase or decrease the list Array
      */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if((float) size / list.length <= 0.25) { //Decrease
+        if ((float) size / list.length <= 0.25) { //Decrease
             Common<ITEM> c = new Common<ITEM>();
-            list = c.resize(list,false);
+            list = c.resize(list, false);
             return;
         }
-        if(size >= list.length){ //increase
+        if (size >= list.length) { //increase
             Common<ITEM> c = new Common<ITEM>();
-            list = c.resize(list,true);
+            list = c.resize(list, true);
         }
     }
+
     @Override
     public String toString() {
         String out = "  List size: " + size + " Internal array size: " + list.length;

@@ -8,7 +8,7 @@ import net.jneto.dataStructures.Comparator.Comparator;
  *
  * @param <ITEM> The type of elements stored in the Stack.
  */
-public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
+public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     private static final int DEFAULT_SIZE = 2; // internal ArraySize
     private ITEM[] pqueue; // Array
     private int size; // Used array size
@@ -22,7 +22,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
      * any logic you want
      */
     @SuppressWarnings("unchecked")
-    public PriorityQueue(Comparator<ITEM> comparator){
+    public PriorityQueue(Comparator<ITEM> comparator) {
         pqueue = (ITEM[]) new Object[DEFAULT_SIZE];
         this.comparator = comparator;
     }
@@ -58,7 +58,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
         }
 
         ITEM item = pqueue[0];
-        pqueue[0] = pqueue[size-1];
+        pqueue[0] = pqueue[size - 1];
         size--;
         sink(0);
         if ((float) size / pqueue.length <= 0.25) {
@@ -74,7 +74,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
      */
     @Override
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 
     /**
@@ -91,7 +91,6 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
      * returns the first object that will removed put dont remove
      *
      * @return The removed object.
-     *
      */
     @Override
     public ITEM peek() {
@@ -140,11 +139,8 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
     @Override
     public String showReverse() {
         StringBuilder builder = new StringBuilder(); // Java 5+ required
-        String out = "";
         boolean isFirst = true;
-        //its impossible to show reverse mode with another priorityQueue lol
-        //PriorityQueue<ITEM> aux = new PriorityQueue<ITEM>(comparator);
-        ITEM[] aux = (ITEM[]) new Object[size];
+        ITEM[] aux = (ITEM[]) new Object[size]; //objects items array to show reverse mode
         int auxIndex = 0;
         ITEM element;
         while (!isEmpty()) { // removing
@@ -153,7 +149,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
             auxIndex++;
 
         }
-        for (int i = auxIndex - 1; i >=0; i--){ //Adding again
+        for (int i = auxIndex - 1; i >= 0; i--) { //Adding again
             element = aux[i];
             if (isFirst) {
                 builder.append(element);
@@ -218,9 +214,13 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
         pqueue[j] = temp;
     }
 
+
+    /**
+     * Method to increase or decrease the Priority queue Array
+     */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if((float) size / pqueue.length <= 0.25) { //Decrease
+        if ((float) size / pqueue.length <= 0.25) { //Decrease
             ITEM[] aux;
             int newSize;
             if (2 % pqueue.length == 0) {
@@ -238,7 +238,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM>{
             }
             return;
         }
-        if(size >= pqueue.length){ //increase
+        if (size >= pqueue.length) { //increase
             int newSize = pqueue.length * 2;
             ITEM[] aux = (ITEM[]) new Object[newSize];
             for (int i = 0; i < pqueue.length; i++) {

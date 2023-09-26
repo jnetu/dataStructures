@@ -3,6 +3,7 @@ package net.jneto.dataStructures;
 /**
  * This is a classic Bag(Saco) implementation with Array
  * t's an Array Bag, so it be ordered by Array Java logic
+ *
  * @param <ITEM> The type of elements stored in the Bag.
  */
 public class Bag<ITEM> implements DataStructure<ITEM> {
@@ -11,12 +12,13 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     private int size; // Used array size
 
     /**
-     *  Constructor empty bag
+     * Constructor empty bag
      */
     public Bag() {
         bag = (ITEM[]) new Object[DEFAULT_SIZE];
         size = 0;
     }
+
     /**
      * Adds an object to the data structure.
      *
@@ -24,14 +26,14 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public void add(ITEM item) {
-        if(size < bag.length){
+        if (size < bag.length) {
             bag[size] = item;
             size++;
-        }else{
+        } else {
             resize();
             add(item);
         }
-        
+
     }
 
     /**
@@ -41,7 +43,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public ITEM remove() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return null;
         }
         ITEM item = bag[size - 1];
@@ -59,7 +61,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public boolean isEmpty() {
-        return size ==0;
+        return size == 0;
     }
 
     /**
@@ -85,6 +87,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     /**
      * Returns a string of the bag.
      * A bag dont have order... but its a ArrayBag implementation
+     *
      * @return A string representation of the data structure.
      */
     @Override
@@ -115,7 +118,8 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
 
     /**
      * Returns a string of the data structure in reverse order.
-     * A bag dont have order... but its a ArrayBag implementation
+     * A bag don't have order... but it's a ArrayBag implementation
+     *
      * @return A string representation of the reversed data structure.
      */
     @Override
@@ -148,20 +152,19 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     }
 
 
-
     /*
      * Method to increase or decrease the bag Array
      *
      */
     private void resize() {
-        if((float) size / bag.length <= 0.25) { //Decrease
+        if ((float) size / bag.length <= 0.25) { //Decrease
             Common<ITEM> c = new Common<ITEM>();
-            bag = c.resize(bag,false);
+            bag = c.resize(bag, false);
             return;
         }
-        if(size >= bag.length){ //increase
+        if (size >= bag.length) { //increase
             Common<ITEM> c = new Common<ITEM>();
-            bag = c.resize(bag,true);
+            bag = c.resize(bag, true);
         }
     }
 

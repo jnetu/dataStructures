@@ -12,11 +12,13 @@ public class Main {
     /**
      * Main default constructor java
      */
-    public Main(){
+    public Main() {
 
     }
+
     /**
      * Java jar entry point
+     *
      * @param args - java -jar arguments
      */
     public static void main(String[] args) {
@@ -83,7 +85,7 @@ public class Main {
 
     }
 
-    private static void arrayStackDemo(){
+    private static void arrayStackDemo() {
         Stack<String> structure = new Stack<String>();
         structure.add("a");
         print(structure);
@@ -125,7 +127,8 @@ public class Main {
         structure.remove();
         print(structure);
     }
-    private static void arrayBagDemo(){
+
+    private static void arrayBagDemo() {
         Bag<String> structure = new Bag<String>();
         structure.add("a");
         print(structure);
@@ -168,7 +171,7 @@ public class Main {
         print(structure);
     }
 
-    private static void arrayListDemon(){
+    private static void arrayListDemon() {
         ArrayList<String> structure = new ArrayList<String>();
         structure.add("a");
         print(structure);
@@ -214,7 +217,7 @@ public class Main {
     /**
      * A list have more complex methods to-do
      */
-    private static void advancedArrayListStructureDemo(){
+    private static void advancedArrayListStructureDemo() {
         ArrayList<String> structure = new ArrayList<String>();
         structure.add("a");
         print(structure);
@@ -279,8 +282,8 @@ public class Main {
      * and implements Compare Interface demonstration to
      * use in any Objects
      */
-    private static void priorityQueueDemo(){
-        Comparator<String> stringComparator = new Comparator<String>(){ //how to make your comparator system for any Object
+    private static void priorityQueueDemo() {
+        Comparator<String> stringComparator = new Comparator<String>() { //how to make your comparator system for any Object
             @Override
             public int compare(String t1, String t2) {
                 if (t1.length() < t2.length()) { //If bigger - more priority
@@ -395,14 +398,15 @@ public class Main {
         print(structure.showReverse());
         print(structure.removeEnd());
     }
-    private static void output(String name){
+
+    private static void output(String name) {
         System.out.println("/*******************************************************");
         System.out.println("/* " + name + " Demonstration");
         System.out.println("/*******************************************************");
 
     }
 
-    private static void print(Object out){
+    private static void print(Object out) {
         System.out.println(out);
     }
 }

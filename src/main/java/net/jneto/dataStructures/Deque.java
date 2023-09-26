@@ -10,15 +10,10 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
     private static final int DEFAULT_CAPACITY = 2; // internal ArraySize
     private ITEM[] deque; // Array
     private int size; // Used array size
-    private int front; // front deque
-    private int end; // end deque
-
 
     public Deque() {
         deque = (ITEM[]) new Object[DEFAULT_CAPACITY];
         size = 0;
-        /*front = 0;
-        end = -1;*/
     }
 
     /**
@@ -42,10 +37,8 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
      */
     public void addFront(ITEM item) {
         if (size < deque.length) {
-            //desloc itens
-            //deque[10] = deque[9]
-            //deque[9] = deque[8]
-            for (int i = size; i > 0; i--) {
+
+            for (int i = size; i > 0; i--) {//reloc itens
                 deque[i] = deque[i - 1];
             }
             deque[0] = item;
@@ -88,16 +81,19 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
         return item;
     }
 
+
+    /**
+     * Removes and returns an object from the Front Deque.
+     *
+     * @return The removed object.
+     */
     public ITEM removeFront() {
         if (isEmpty()) {
             return null;
         }
         ITEM item = deque[0]; //front item
-        //realoc
-        //deque[0] = deque[1]
-        //deque[1] = deque[2]
-        //...
-        for (int i = 0; i < size - 1; i++) {
+
+        for (int i = 0; i < size - 1; i++) { //reloc
             deque[i] = deque[i + 1];
         }
         return item;
@@ -142,19 +138,32 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * returns the first object that will removed put dont remove
+     * returns the first object that will removed put don't remove
+     * use peekFront and peekEnd to do correctly logic
      *
      * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
      */
     @Override
     public ITEM peek() {
-        return size <= 0 ? null : deque[0];
+        return size <= 0 ? null : deque[size - 1];
     }
 
+
+    /**
+     * returns the front object that will removed put don't remove
+     *
+     * @return The removed object.
+     */
     public ITEM peekFront() {
         return size <= 0 ? null : deque[0];
     }
+
+
+    /**
+     * returns the End object that will removed put don't remove
+     *
+     * @return The removed object.
+     */
     public ITEM peekEnd() {
         return size <= 0 ? null : deque[size - 1];
     }
@@ -164,12 +173,13 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
      *
      * @return A string representation of the data structure.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public String show() {
         StringBuilder builder = new StringBuilder(); // Java 5+ required
         boolean isFirst = true;
         ITEM[] aux = (ITEM[]) new Object[size];
-        for(int i = 0; i < size - 1; i++){
+        for (int i = 0; i < size - 1; i++) {
             aux[i] = deque[i];
             if (isFirst) {
                 builder.append(aux[i]);
@@ -187,12 +197,13 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
      *
      * @return A string representation of the reversed data structure.
      */
+    @SuppressWarnings("unchecked")
     @Override
     public String showReverse() {
         StringBuilder builder = new StringBuilder(); // Java 5+ required
         boolean isFirst = true;
         ITEM[] aux = (ITEM[]) new Object[size];
-        for(int i = size - 1; i >=0; i--){
+        for (int i = size - 1; i >= 0; i--) {
             aux[i] = deque[i];
             if (isFirst) {
                 builder.append(aux[i]);
@@ -205,10 +216,9 @@ public class Deque<ITEM> implements DataStructure<ITEM> {
         return "[" + builder.toString() + "]";
     }
 
-    /*
-     * Method to increase or decrease the queue Array
+    /**
+     * Method to increase or decrease the deque Array
      */
-    @SuppressWarnings("unchecked")
     private void resize() {
         if ((float) size / deque.length <= 0.25) { //Decrease
             Common<ITEM> c = new Common<ITEM>();
