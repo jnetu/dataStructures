@@ -1,3 +1,4 @@
+package net.jneto.dataStructures;
 /*
 * Element class that ist the basis for a lot of other classes for example LinkedLists
 */
