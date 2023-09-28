@@ -1,3 +1,5 @@
+package net.jneto.dataStructures;
+
 public class LinkedList {
     
     private Element head;
