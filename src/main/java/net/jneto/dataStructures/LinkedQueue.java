@@ -1,78 +1,75 @@
 package net.jneto.dataStructures;
 
 public class LinkedQueue<ITEM> implements DataStructure<ITEM> {
-    private int size; // total queue size
-    private Node<ITEM> first; // first element that will be removed
-    private Node<ITEM> last; // last element added
+    private int size; // Total size of the queue
+    private Node<ITEM> first; // First element that will be removed (front of the queue)
+    private Node<ITEM> last; // Last element added (end of the queue)
 
-    public LinkedQueue(){
+    public LinkedQueue() {
         first = null;
         last = null;
         size = 0;
     }
 
-
-
     /**
-     * Linked class
-     * dont need to be static relax the garbage collector will save us
+     * Node class represents an element in the linked queue.
+     * It doesn't need to be static, as the garbage collector handles unused objects.
      */
-    private class Node<ITEM>{ // Node is a data structure to keep actual item and the next DataStructure
-        private ITEM item;
-        private Node<ITEM> next;
+    private class Node<ITEM> {
+        private ITEM item; // The actual item stored in the node
+        private Node<ITEM> next; // Reference to the next node in the queue
     }
 
     /**
-     * Adds an object to the data structure.
+     * Adds an item to the end of the queue.
      *
-     * @param item The object to be added.
+     * @param item The item to be added.
      */
     @Override
     public void add(ITEM item) {
-        Node<ITEM> aux = new Node<ITEM>();
+        Node<ITEM> aux = new Node<>(); // Create a new node to hold the item
         aux.item = item;
         aux.next = null;
-        if(isEmpty()){//its means that dont have queued objects wet, and nothing to link wet
-            //if empty, lets add one element, and the element is the last, and the first of the queue
+
+        if (isEmpty()) { // If the queue is empty, the new node becomes both first and last
             first = aux;
             last = aux;
-        }else{ //goto end pls respect The Queue >:( do not cheat
+        } else { // Otherwise, add the new node to the end of the queue
             last.next = aux;
             last = aux;
         }
-        //plus one :)
-        size++;
+
+        size++; // Increase the size of the queue
     }
 
     /**
-     * Removes and returns an object from the data structure.
+     * Removes and returns the first item from the queue.
      *
-     * @return the first item that will be removed(can be null if empty)
+     * @return The first item in the queue, or null if the queue is empty.
      */
     @Override
     public ITEM remove() {
-        //Next that will be free is the first on a Queue
-        Node<ITEM> aux = first;
+        if (isEmpty()) {
+            return null;
+        }
 
-        if(size<=1){ // have just one on queue
-            //so lets clean
+        Node<ITEM> aux = first; // Store the current first node
+
+        if (size <= 1) { // If there's only one item in the queue, clear the queue
             first = null;
             last = null;
-
-        }else{
-            first = first.next; //the next Object will be the future first
+        } else { // Otherwise, move the first pointer to the next node
+            first = first.next;
         }
-        //decrease one :(
-        size--;
 
-
-        return aux.item;
+        size--; // Decrease the size of the queue
+        return aux.item; // Return the removed item
     }
 
     /**
-     * Checks if the data structure is empty.
+     * Checks if the queue is empty.
      *
-     * @return True if the data structure contains no objects, false otherwise.
+     * @return True if the queue contains no items, false otherwise.
      */
     @Override
     public boolean isEmpty() {
@@ -80,9 +77,9 @@ public class LinkedQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Returns the size (number of objects) in the data structure.
+     * Returns the number of items in the queue.
      *
-     * @return The size of the data structure.
+     * @return The size of the queue.
      */
     @Override
     public int size() {
@@ -90,54 +87,86 @@ public class LinkedQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * returns the first object that will removed put dont remove
+     * Returns the first item in the queue without removing it.
      *
-     * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
+     * @return The first item, or null if the queue is empty.
      */
     @Override
     public ITEM peek() {
-        return size <= 0 ? null : first.item;
+        return isEmpty() ? null : first.item;
     }
 
     /**
-     * Returns a string of the data structure.
+     * Returns a string representation of the queue with all elements in order.
      *
-     * @return A string representation of the data structure.
+     * @return A string representation of the queue.
      */
     @Override
     public String show() {
-        //lets walk the queue with an aux
-        Node<ITEM> aux = first;
-        StringBuilder builder = new StringBuilder(); // Java 5+ required
+        Node<ITEM> aux = first; // Start from the first node
+        StringBuilder builder = new StringBuilder(); // Build the string representation
         boolean isFirst = true;
-        while(aux != null){
 
-            if(isFirst){
+        while (aux != null) { // Traverse the queue
+
+            if (isFirst) {
                 isFirst = false;
-            }else{
+            } else {
                 builder.append(", ");
             }
-            builder.append(aux.item);
-            aux = aux.next; //walk to next
-        }
 
+            builder.append(aux.item); // Append the item to the string
+            aux = aux.next; // Move to the next node
+        }
 
         return "[" + builder.toString() + "]";
     }
 
     /**
-     * Returns a string of the data structure in reverse order.
+     * Returns a string representation of the queue with all elements in reverse order.
      *
-     * @return A string representation of the reversed data structure.
+     * @return A string representation of the reversed queue.
      */
     @Override
     public String showReverse() {
-        return "todo"; //i dont have idea how todo showReverse wet, my mint are bloewd when's night
+        StringBuilder builder = new StringBuilder();
+        boolean isFirst = true;
+        LinkedQueue<ITEM> auxQueue = new LinkedQueue<>();
+        ITEM[] elements = (ITEM[]) new Object[size];
+        ITEM element;
+        int index = 0;
+        Node<ITEM> current = first;
+
+        // Remove and store elements in an array
+        while (current != null) {
+            elements[index] = current.item;
+            current = current.next;
+            auxQueue.add(elements[index]);
+            index++;
+        }
+
+        // Build the reverse string
+        while (!auxQueue.isEmpty()) {
+            element = auxQueue.remove();
+            if (isFirst) {
+                builder.append(element);
+                isFirst = false;
+            } else {
+                builder.append(", ").append(element);
+            }
+        }
+        return "[" + builder.toString() + "]";
     }
 
+
+
+    /**
+     * Returns a string with basic information about the queue.
+     *
+     * @return A string with the queue's size and a prompt to use the show() method.
+     */
     @Override
     public String toString() {
-        return "this linked structure have " + size + " elements, to show then use show() method";
+        return "This linked structure contains " + size + " elements. To display them, use the show() method.";
     }
 }

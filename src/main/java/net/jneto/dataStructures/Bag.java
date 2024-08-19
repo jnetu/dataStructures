@@ -1,8 +1,8 @@
 package net.jneto.dataStructures;
 
 /**
- * This is a classic Bag(Saco) implementation with Array
- * t's an Array Bag, so it be ordered by Array Java logic
+ * This is a classic Bag implementation using an array.
+ * It's an Array Bag, so it follows Java array logic.
  *
  * @param <ITEM> The type of elements stored in the Bag.
  */
@@ -86,7 +86,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
 
     /**
      * Returns a string of the bag.
-     * A bag dont have order... but its a ArrayBag implementation
+     * A bag doesn't have an order... but this is an ArrayBag implementation.
      *
      * @return A string representation of the data structure.
      */
@@ -118,7 +118,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
 
     /**
      * Returns a string of the data structure in reverse order.
-     * A bag don't have order... but it's a ArrayBag implementation
+     * A bag doesn't have an order... but this is an ArrayBag implementation.
      *
      * @return A string representation of the reversed data structure.
      */
@@ -157,7 +157,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
      *
      */
     private void resize() {
-        if ((float) size / bag.length <= 0.25) { //Decrease
+        if ((float) size / bag.length <= 0.25) { // Decrease
             Common<ITEM> c = new Common<ITEM>();
             bag = c.resize(bag, false);
             return;
@@ -171,6 +171,6 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
     @Override
     public String toString() {
         String out = "  Bag size: " + size + " Internal array size: " + bag.length;
-        return out + " to list all element use method show";
+        return out + " to list all elements, use the method show.";
     }
 }

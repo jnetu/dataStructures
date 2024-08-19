@@ -24,8 +24,10 @@ public class Main {
     public static void main(String[] args) {
         output("Stack");
         arrayStackDemo();
+
         output("Queue");
         arrayQueueDemo();
+
         output("Bag");
         arrayBagDemo();
         output("ArrayList");
@@ -39,6 +41,8 @@ public class Main {
         output("Deque");
         arrayDequeDemo();
 
+        output("LinkedQueue");
+        linkedQueueDemo();
     }
 
     private static void arrayQueueDemo() {
@@ -63,21 +67,25 @@ public class Main {
         structure.add("e");
         print(structure);
         structure.add("f");
+        print("show:");
         print(structure.show());
+        print("show reverse:");
         print(structure.showReverse());
-        print(structure.remove());
-        print(structure.remove());
+        print("removed: " + structure.remove());
+        print("removed: " + structure.remove());
+        print("show:");
         print(structure.show());
         print(structure.remove());
         print(structure.remove());
         print(structure.show());
         print(structure);
+        print("-------");
         structure.add("g");
         structure.remove();
         structure.remove();
         structure.remove();
         structure.remove();
-        print(structure);
+        print(structure.show());
         structure.remove();
         structure.remove();
         structure.remove();
@@ -398,6 +406,52 @@ public class Main {
         print(structure.showReverse());
         print(structure.removeEnd());
     }
+
+    private static void linkedQueueDemo() {
+        LinkedQueue<String> structure = new LinkedQueue<String>();
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure.show());
+        print(structure);
+        structure.add("linked b");
+        print(structure.show());
+        print(structure);
+        structure.add("linked c");
+        print(structure.show());
+        print(structure);
+        structure.add("linked d");
+        print(structure);
+        structure.add("linked e");
+        print(structure);
+        structure.add("linked f");
+        print("show:");
+        print(structure.show());
+        print("show Reverse:");
+        print(structure.showReverse());
+        print("Removed " + structure.remove());
+        print("Removed " + structure.remove());
+        print("show:");
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("linked g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+
+    }
+
 
     private static void output(String name) {
         System.out.println("/*******************************************************");

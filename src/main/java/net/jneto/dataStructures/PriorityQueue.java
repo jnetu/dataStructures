@@ -3,23 +3,22 @@ package net.jneto.dataStructures;
 import net.jneto.dataStructures.Comparator.Comparator;
 
 /**
- * This is a Priority Queue(Fila de prioridade) implementation with Array
- * it use Interface comparator to compare elements and min-heap logic vector
+ * This is a Priority Queue implementation using an Array.
+ * It uses the Comparator interface to compare elements and follows min-heap logic.
  *
- * @param <ITEM> The type of elements stored in the Stack.
+ * @param <ITEM> The type of elements stored in the Priority Queue.
  */
 public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
-    private static final int DEFAULT_SIZE = 2; // internal ArraySize
-    private ITEM[] pqueue; // Array
-    private int size; // Used array size
+    private static final int DEFAULT_SIZE = 2; // Initial array size
+    private ITEM[] pqueue; // Array to store the elements
+    private int size; // Number of elements in the queue
 
-    private Comparator<ITEM> comparator;
+    private final Comparator<ITEM> comparator;
 
     /**
-     * Constructor empty priority queue
-     * a priority queue needs a comparator logic,
-     * just implement interface Comparator and use
-     * any logic you want
+     * Constructor for an empty priority queue.
+     * A priority queue requires a comparison logic.
+     * Implement the Comparator interface and provide any comparison logic you prefer.
      */
     @SuppressWarnings("unchecked")
     public PriorityQueue(Comparator<ITEM> comparator) {
@@ -28,7 +27,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Adds an object to the data structure.
+     * Adds an object to the priority queue.
      *
      * @param item The object to be added.
      */
@@ -42,14 +41,13 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
             resize();
             add(item);
         }
-
     }
 
     /**
-     * Removes and returns an object from the data structure.
+     * Removes and returns the highest priority object from the priority queue.
      *
-     * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
+     * @return The object removed from the priority queue.
+     * @throws IllegalStateException If the priority queue is empty.
      */
     @Override
     public ITEM remove() {
@@ -68,9 +66,9 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Checks if the data structure is empty.
+     * Checks if the priority queue is empty.
      *
-     * @return True if the data structure contains no objects, false otherwise.
+     * @return True if the priority queue contains no elements, false otherwise.
      */
     @Override
     public boolean isEmpty() {
@@ -78,45 +76,44 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Returns the size (number of objects) in the data structure.
+     * Returns the number of elements in the priority queue.
      *
-     * @return The size of the data structure.
+     * @return The size of the priority queue.
      */
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     /**
-     * returns the first object that will removed put dont remove
+     * Returns the highest priority object without removing it from the priority queue.
      *
-     * @return The removed object.
+     * @return The object at the top of the priority queue.
      */
     @Override
     public ITEM peek() {
         if (isEmpty()) {
             return null;
         }
-        return size == 0 ? null : pqueue[0];
+        return pqueue[0];
     }
 
     /**
-     * Returns a string of the data structure.
+     * Returns a string representation of the priority queue.
      *
-     * @return A string representation of the data structure.
+     * @return A string representing the elements in the priority queue.
      */
     @Override
     public String show() {
-        StringBuilder builder = new StringBuilder(); // Java 5+ required
+        StringBuilder builder = new StringBuilder();
         boolean isFirst = true;
-        PriorityQueue<ITEM> aux = new PriorityQueue<ITEM>(comparator);
+        PriorityQueue<ITEM> aux = new PriorityQueue<>(comparator);
         ITEM element;
-        while (!isEmpty()) { // removing
+        while (!isEmpty()) { // Remove elements
             element = remove();
             aux.add(element);
         }
-        while (!aux.isEmpty()) { // adding again
-
+        while (!aux.isEmpty()) { // Re-add elements
             element = aux.remove();
             if (isFirst) {
                 isFirst = false;
@@ -128,28 +125,26 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
         }
 
         return "[" + builder.toString() + "]";
-
     }
 
     /**
-     * Returns a string of the data structure in reverse order.
+     * Returns a string representation of the priority queue in reverse order.
      *
-     * @return A string representation of the reversed data structure.
+     * @return A string representing the elements in reverse order.
      */
     @Override
     public String showReverse() {
-        StringBuilder builder = new StringBuilder(); // Java 5+ required
+        StringBuilder builder = new StringBuilder();
         boolean isFirst = true;
-        ITEM[] aux = (ITEM[]) new Object[size]; //objects items array to show reverse mode
+        ITEM[] aux = (ITEM[]) new Object[size]; // Array to store elements in reverse order
         int auxIndex = 0;
         ITEM element;
-        while (!isEmpty()) { // removing
+        while (!isEmpty()) { // Remove elements
             element = remove();
             aux[auxIndex] = element;
             auxIndex++;
-
         }
-        for (int i = auxIndex - 1; i >= 0; i--) { //Adding again
+        for (int i = auxIndex - 1; i >= 0; i--) { // Re-add elements in reverse order
             element = aux[i];
             if (isFirst) {
                 builder.append(element);
@@ -163,18 +158,13 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
         return "[" + builder.toString() + "]";
     }
 
-
     /**
-     * a priority queue use min-heap structure methods.
-     * implemented bellow:
-     */
-    /**
-     * Moves an element up the heap to maintain the min-heap property.
+     * Maintains the min-heap property by moving an element up the heap.
      *
-     * @param k The index of the element to be moved.
+     * @param k The index of the element to be moved up.
      */
     private void swim(int k) {
-        // Swim the element up the heap by comparing it with its parent
+        // Move the element up the heap by comparing it with its parent
         while (k > 0 && comparator.compare(pqueue[k], pqueue[(k - 1) / 2]) < 0) {
             swap(k, (k - 1) / 2);
             k = (k - 1) / 2;
@@ -182,12 +172,12 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Moves an element down the heap to maintain the min-heap property.
+     * Maintains the min-heap property by moving an element down the heap.
      *
-     * @param k The index of the element to be moved.
+     * @param k The index of the element to be moved down.
      */
     private void sink(int k) {
-        // Sink the element down the heap by comparing it with its children
+        // Move the element down the heap by comparing it with its children
         while (2 * k + 1 < size) {
             int j = 2 * k + 1;
             if (j + 1 < size && comparator.compare(pqueue[j + 1], pqueue[j]) < 0) {
@@ -202,25 +192,24 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Swaps two elements in the heap.
+     * Swaps two elements in the priority queue.
      *
      * @param i The index of the first element.
      * @param j The index of the second element.
      */
     private void swap(int i, int j) {
-        // Swap elements at indices i and j in the heap
+        // Swap elements at indices i and j in the priority queue
         ITEM temp = pqueue[i];
         pqueue[i] = pqueue[j];
         pqueue[j] = temp;
     }
 
-
     /**
-     * Method to increase or decrease the Priority queue Array
+     * Resizes the internal array to accommodate more or fewer elements.
      */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if ((float) size / pqueue.length <= 0.25) { //Decrease
+        if ((float) size / pqueue.length <= 0.25) { // Decrease size
             ITEM[] aux;
             int newSize;
             if (2 % pqueue.length == 0) {
@@ -238,7 +227,7 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
             }
             return;
         }
-        if (size >= pqueue.length) { //increase
+        if (size >= pqueue.length) { // Increase size
             int newSize = pqueue.length * 2;
             ITEM[] aux = (ITEM[]) new Object[newSize];
             for (int i = 0; i < pqueue.length; i++) {
@@ -246,13 +235,11 @@ public class PriorityQueue<ITEM> implements DataStructure<ITEM> {
             }
             pqueue = aux;
         }
-
     }
 
     @Override
     public String toString() {
-        String out = "  Priority Queue size: " + size + " Internal array size: " + pqueue.length;
-        return out + " to list all element use method show";
+        String out = "Priority Queue size: " + size + " Internal array size: " + pqueue.length;
+        return out + " to list all elements, use the show method.";
     }
 }
-

@@ -1,24 +1,22 @@
 package net.jneto.dataStructures;
 
-
 /**
- * This is a classic ArrayList(Lista) implementation with Array
+ * This is a classic ArrayList implementation using an array.
  *
  * @param <ITEM> The type of elements stored in the ArrayList.
  */
 public class ArrayList<ITEM> implements DataStructure<ITEM> {
-    private static final int DEFAULT_SIZE = 2; // internal ArraySize
+    private static final int DEFAULT_SIZE = 2; // Internal array size
     private ITEM[] list; // Array
-    private int size; // Used array size
+    private int size; // Number of elements in the array
 
     /**
-     * Constructor empty list
+     * Constructs an empty list.
      */
     @SuppressWarnings("unchecked")
     public ArrayList() {
         list = (ITEM[]) new Object[DEFAULT_SIZE];
         size = 0;
-
     }
 
     /**
@@ -36,33 +34,33 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * A list logic you can put Objects in any position
+     * In an ArrayList, you can insert objects at any position.
      *
-     * @param item  - The object to be added
-     * @param index - index where object will be added
+     * @param item  The object to be added.
+     * @param index The index where the object will be added.
      */
     public void add(ITEM item, int index) {
-        //INDEX VERIFY
+        // Verify index
         if (index > list.length || index < 0) {
             return;
         }
-        //VERIFY SPACE
+        // Verify space
         if (size >= list.length) {
             resize();
         }
 
-        //ARRAY REALOCATION
-        //LOGIC:
-        //[0,1,2,3,4,5, null, null]
-        //add 2 in index 1:
-        //index = 1
-        //RESIZE because size == 8 == list.length
-        //list[7] = list[6]
-        //list[6] = list[5]
-        //...
-        //list[index==1] STOP
-        //list[index==1] = new item
-        //[0,2,1,2,3,4,5, null, null, null, null, null, null, null, null, null, null]
+        // Array reallocation
+        // Logic:
+        // [0,1,2,3,4,5, null, null]
+        // Add 2 at index 1:
+        // index = 1
+        // Resize because size == 8 == list.length
+        // list[7] = list[6]
+        // list[6] = list[5]
+        // ...
+        // list[index==1] STOP
+        // list[index==1] = new item
+        // [0,2,1,2,3,4,5, null, null, null, null, null, null, null, null, null, null]
 
         for (int i = size; i > index; i--) {
             list[i] = list[i - 1];
@@ -72,9 +70,10 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * A list logic you can get Objects in any position
+     * In an ArrayList, you can get objects at any position.
      *
-     * @param index - index where object will be returned
+     * @param index The index where the object will be retrieved.
+     * @return The object at the specified index.
      */
     public ITEM get(int index) {
         if (index > list.length || index < 0) {
@@ -86,12 +85,10 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     /**
      * Removes and returns the last added item from the array.
      *
-     * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
+     * @return The removed object, or null if the structure is empty.
      */
     @Override
     public ITEM remove() {
-
         if (isEmpty()) {
             return null;
         }
@@ -106,36 +103,26 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * A list logic you can remove Objects in any position
+     * In an ArrayList, you can remove objects at any position.
      *
-     * @param index - index where object will be removed
+     * @param index The index where the object will be removed.
+     * @return The removed object, or null if the index is out of bounds.
      */
     public ITEM remove(int index) {
-        if (index > list.length || index < 0) {
+        if (index >= list.length || index < 0) {
             return null;
         }
-        //ARRAY REALOC
-        //LOGIC
-        //[1,2,3,4,5,6,whatever,whatever] - size = 6 list[].length = 8
-        //           |> last index list[size]
-        //remove(index = 1)
-        //[1,3,4,5,6,whatever,whatever,whatever] - size = 5 list[].length = 8
-        //         |> last index list[size]
-        //
 
         ITEM removed = list[index];
-        //after 'remove' realoc after removed item
+        // Reallocation after removing the item
         for (int i = index; i < size - 1; i++) {
             list[i] = list[i + 1];
-
         }
-        //[1,2,3,4,5,6,whatever,whatever]
-        //after for
-        //[1,3,4,5,6,6,whatever,whatever]
-        //lets clean last index(its inaccessible but why not clean it)
+
+        // Clean the last index (inaccessible but good practice to clean)
         list[size - 1] = null;
         size--;
-        if ((float) size / list.length <= 0.25) { //resize if 0.25 less used
+        if ((float) size / list.length <= 0.25) { // Resize if less than 25% used
             resize();
         }
 
@@ -143,10 +130,10 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Removes and returns the first occurrence from the array.
+     * Removes and returns the first occurrence of the specified item.
      *
-     * @return removed successfully.
-     * @throws IllegalStateException If the data structure is empty.
+     * @param item The item to remove.
+     * @return True if the item was removed successfully, false otherwise.
      */
     public boolean remove(ITEM item) {
         for (int i = 0; i < size; i++) {
@@ -170,7 +157,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Returns the size (number of objects) in the data structure.
+     * Returns the number of objects in the data structure.
      *
      * @return The size of the data structure.
      */
@@ -180,10 +167,9 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * returns the first object that will be removed but don't remove
+     * Returns the last object that was added without removing it.
      *
-     * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
+     * @return The last object added, or null if the structure is empty.
      */
     @Override
     public ITEM peek() {
@@ -191,26 +177,20 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * returns the indexed object but don't remove
+     * Returns the object at the specified index without removing it.
      *
-     * @return The removed object.
-     * @throws IllegalStateException If the data structure is empty.
+     * @param index The index of the object to peek.
+     * @return The object at the specified index, or null if the index is out of bounds.
      */
     public ITEM peek(int index) {
-        //[1,2,3]
-        //peek(0)
-        // 1
-        //[1] --size = 1 list.length = 2
-        //peek(0)
-        // 1  (list[0])
-        if (index > size || index < 0) {
+        if (index >= size || index < 0) {
             return null;
         }
-        return list[index - 1];
+        return list[index];
     }
 
     /**
-     * Returns a string of the data structure.
+     * Returns a string representation of the data structure.
      *
      * @return A string representation of the data structure.
      */
@@ -218,15 +198,14 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     public String show() {
         StringBuilder builder = new StringBuilder(); // Java 5+ required
         boolean isFirst = true;
-        ArrayList<ITEM> aux = new ArrayList<ITEM>();
+        ArrayList<ITEM> aux = new ArrayList<>();
         ITEM element;
-        while (!isEmpty()) { // removing
+        while (!isEmpty()) { // Removing items
             element = remove();
             aux.add(element);
         }
 
-        while (!aux.isEmpty()) { // adding again
-
+        while (!aux.isEmpty()) { // Adding items back
             element = aux.remove();
             if (isFirst) {
                 isFirst = false;
@@ -241,7 +220,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Returns a string of the data structure in reverse order.
+     * Returns a string representation of the data structure in reverse order.
      *
      * @return A string representation of the reversed data structure.
      */
@@ -249,11 +228,10 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     public String showReverse() {
         StringBuilder builder = new StringBuilder();
         boolean isFirst = true;
-        Stack<ITEM> aux = new Stack<ITEM>();
+        Stack<ITEM> aux = new Stack<>();
         ITEM element;
 
-        while (!isEmpty()) { // removing
-
+        while (!isEmpty()) { // Removing items
             element = remove();
             if (isFirst) {
                 builder.append(element);
@@ -264,7 +242,7 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
 
             aux.add(element);
         }
-        while (!aux.isEmpty()) { // adding again
+        while (!aux.isEmpty()) { // Adding items back
             element = aux.remove();
             add(element);
         }
@@ -273,24 +251,24 @@ public class ArrayList<ITEM> implements DataStructure<ITEM> {
     }
 
     /**
-     * Method to increase or decrease the list Array
+     * Method to increase or decrease the list array size.
      */
     @SuppressWarnings("unchecked")
     private void resize() {
-        if ((float) size / list.length <= 0.25) { //Decrease
-            Common<ITEM> c = new Common<ITEM>();
+        if ((float) size / list.length <= 0.25) { // Decrease
+            Common<ITEM> c = new Common<>();
             list = c.resize(list, false);
             return;
         }
-        if (size >= list.length) { //increase
-            Common<ITEM> c = new Common<ITEM>();
+        if (size >= list.length) { // Increase
+            Common<ITEM> c = new Common<>();
             list = c.resize(list, true);
         }
     }
 
     @Override
     public String toString() {
-        String out = "  List size: " + size + " Internal array size: " + list.length;
-        return out + " to list all element use method show";
+        String out = "List size: " + size + " Internal array size: " + list.length;
+        return out + ". To list all elements, use the show method.";
     }
 }
