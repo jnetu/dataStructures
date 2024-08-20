@@ -22,28 +22,44 @@ public class Main {
      * @param args - java -jar arguments
      */
     public static void main(String[] args) {
-        output("Stack");
-        arrayStackDemo();
+//        output("Stack");
+//        arrayStackDemo();
+//
+//        output("Queue");
+//        arrayQueueDemo();
+//
+//        output("Bag");
+//        arrayBagDemo();
+//        output("ArrayList");
+//        arrayListDemon();
+//
+//        output("ArrayList additional methods ");
+//        advancedArrayListStructureDemo();
+//        output("Priority queue Array-min-heap based ");
+//        priorityQueueDemo();
+//
+//        output("Deque");
+//        arrayDequeDemo();
+//
+//        output("LinkedQueue");
+//        linkedQueueDemo();
 
-        output("Queue");
-        arrayQueueDemo();
+        //output("linkedStack");
+        //linkedStackDemo();
 
-        output("Bag");
-        arrayBagDemo();
-        output("ArrayList");
-        arrayListDemon();
+        //output("linkedBag");
+        //linkedBagDemo();
 
-        output("ArrayList additional methods ");
-        advancedArrayListStructureDemo();
-        output("Priority queue Array-min-heap based ");
-        priorityQueueDemo();
+        //output("LinkedPriorityQueue");
+        //linkedPriorityQueueDemo();
 
-        output("Deque");
-        arrayDequeDemo();
+        output("LinkedList");
+        linkedListDemo();
 
-        output("LinkedQueue");
-        linkedQueueDemo();
     }
+
+
+
 
     private static void arrayQueueDemo() {
         Queue<String> structure = new Queue<String>();
@@ -306,9 +322,9 @@ public class Main {
         Comparator<String> cp = new BiggerStringLengthComparator(); //another way into Comparator Interface example
         PriorityQueue<String> pq = new PriorityQueue<String>(stringComparator);
         pq.add("n1");
-        pq.add("nome maior AAAAAAAAAa");
+        pq.add("bigger AAAAAAAAAa");
         pq.add("b22");
-        pq.add("nome maior CCCCCCCCCc");
+        pq.add("bigger CCCCCCCCCc");
         pq.add("d333");
         pq.add("e4444");
         pq.add("f55555");
@@ -336,16 +352,74 @@ public class Main {
         print(pq.remove());
         print(pq.show());
         print(pq.peek());
-        Comparator<Integer> compint = new BiggerIntegerComparator();
-        PriorityQueue<Integer> pqint = new PriorityQueue<Integer>(compint);
+        Comparator<Integer> intergerComparator = new BiggerIntegerComparator();
+        PriorityQueue<Integer> intergerPriorityQueue = new PriorityQueue<Integer>(intergerComparator);
 
-        pqint.add(1);
-        pqint.add(2);
-        pqint.add(33);
-        pqint.add(4);
+        intergerPriorityQueue.add(1);
+        intergerPriorityQueue.add(2);
+        intergerPriorityQueue.add(33);
+        intergerPriorityQueue.add(4);
 
 
-        print(pqint.show());
+        print(intergerPriorityQueue.show());
+    }
+
+    private static void linkedPriorityQueueDemo() {
+        Comparator<String> stringComparator = new Comparator<String>() { //how to make your comparator system for any Object
+            @Override
+            public int compare(String t1, String t2) {
+                if (t1.length() < t2.length()) { //If bigger - more priority
+                    return 1;
+                } else if (t1.length() > t2.length()) {//else - less priority
+                    return -1;
+                }
+
+                return 0; //zero if it's equals
+            }
+        };
+        Comparator<String> cp = new BiggerStringLengthComparator(); //another way into Comparator Interface example
+        LinkedPriorityQueue<String> pq = new LinkedPriorityQueue<String>(stringComparator);
+        pq.add("n1");
+        pq.add("bigger AAAAAAAAAa");
+        pq.add("b22");
+        pq.add("bigger CCCCCCCCCc");
+        pq.add("d333");
+        pq.add("e4444");
+        pq.add("f55555");
+        pq.add("g666666");
+        pq.add("a7777777");
+        print(pq.peek());
+        print(pq);
+        print(pq.show());
+        print(pq.showReverse());
+        print(pq.remove());
+        print(pq.show());
+        print(pq.remove());
+        print(pq.show());
+        print(pq.remove());
+        print(pq.show());
+        print(pq.remove());
+        print(pq.show());
+        print(pq.peek());
+        print(pq.remove());
+        print(pq.show());
+        pq.add("c");
+        print(pq.show());
+        print(pq.remove());
+        print(pq.peek());
+        print(pq.remove());
+        print(pq.show());
+        print(pq.peek());
+        Comparator<Integer> intergerComparator = new BiggerIntegerComparator();
+        LinkedPriorityQueue<Integer> intergerPriorityQueue = new LinkedPriorityQueue<Integer>(intergerComparator);
+
+        intergerPriorityQueue.add(1);
+        intergerPriorityQueue.add(2);
+        intergerPriorityQueue.add(33);
+        intergerPriorityQueue.add(4);
+
+
+        print(intergerPriorityQueue.show());
     }
 
     private static void arrayDequeDemo() {
@@ -450,6 +524,137 @@ public class Main {
         structure.remove();
         print(structure);
 
+    }
+
+    private static void linkedStackDemo() {
+        LinkedStack<String> structure = new LinkedStack<String>();
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure.show());
+        print(structure);
+        structure.add("linked b");
+        print(structure.show());
+        print(structure);
+        structure.add("linked c");
+        print(structure.show());
+        print(structure);
+        structure.add("linked d");
+        print(structure);
+        structure.add("linked e");
+        print(structure);
+        structure.add("linked f");
+        print("show:");
+        print(structure.show());
+        print("show Reverse:");
+        print(structure.showReverse());
+        print("Removed " + structure.remove());
+        print("Removed " + structure.remove());
+        print("show:");
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("linked g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+    }
+
+    private static void linkedBagDemo() {
+        LinkedBag<String> structure = new LinkedBag<String>();
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure);
+        structure.add("linked a");
+        print(structure.show());
+        print(structure);
+        structure.add("linked b");
+        print(structure.show());
+        print(structure);
+        structure.add("linked c");
+        print(structure.show());
+        print(structure);
+        structure.add("linked d");
+        print(structure);
+        structure.add("linked e");
+        print(structure);
+        structure.add("linked f");
+        print("show:");
+        print(structure.show());
+        print("show Reverse:");
+        print(structure.showReverse());
+        print("Removed " + structure.remove());
+        print("Removed " + structure.remove());
+        print("show:");
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("linked g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+    }
+
+    private static void linkedListDemo() {
+        ArrayList<String> structure = new ArrayList<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
     }
 
 
