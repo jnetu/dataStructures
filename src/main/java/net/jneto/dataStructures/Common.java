@@ -12,7 +12,7 @@ public class Common<ITEM> {
      * Default constructor to use not statics Common method
      */
     public Common() {
-        //dont need initialization
+        // No initialization needed.
     }
 
     /**
