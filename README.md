@@ -145,6 +145,9 @@ Feel free to explore the provided releases to access JAR files for different ver
 - **Release 1.1**:
     - [Download JAR file DataStructures-1.1-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.1)
     - Resizing array List basic methods, Resizing array PriorityQueue, and Deque created.
+- **Release 1.2**:
+    - [Download JAR file DataStructures-1.2-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.2)
+    - Linked structures created. linked bag, stack, queue, list and priority queue.
 
 These releases provide pre-built JAR files for different versions of the library, allowing you to easily incorporate these data structures into your Java projects.
 

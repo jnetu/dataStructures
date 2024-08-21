@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "net.jneto"
-version = "1.2-snapshot"
+version = "1.2-release"
 
 repositories {
     mavenCentral()
