@@ -53,9 +53,11 @@ public class Main {
         //output("LinkedPriorityQueue");
         //linkedPriorityQueueDemo();
 
-        output("LinkedList");
-        linkedListDemo();
+        //output("LinkedList");
+        //linkedListDemo();
 
+        output("RandomBag");
+        randomBagDemo();
     }
 
 
@@ -647,6 +649,50 @@ public class Main {
         print(structure);
         structure.add("g");
         structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+    }
+    private static void randomBagDemo() {
+        RandomBag<String> structure = new RandomBag<String>();
+        structure.randomAdd("a");
+        print(structure);
+        structure.randomAdd("b");
+        print(structure);
+        structure.randomAdd("c");
+        print(structure);
+        structure.add("d");
+        print(structure.show());
+        print(structure);
+        structure.add("e");
+        print(structure.show());
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        print(structure);
+        structure.add("h");
+        print(structure);
+        structure.add("i");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.randomRemove());
+        print(structure.randomRemove());
+        print(structure.show());
+        print(structure);
+        structure.add("j");
+        print(structure.show());
+        structure.remove();
+        print(structure.show());
         structure.remove();
         structure.remove();
         structure.remove();
