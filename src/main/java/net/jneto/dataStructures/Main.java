@@ -53,8 +53,11 @@ public class Main {
         //output("LinkedPriorityQueue");
         //linkedPriorityQueueDemo();
 
-        output("LinkedList");
-        linkedListDemo();
+        //output("LinkedList");
+        //linkedListDemo();
+    	
+        output("DoublyLinkedList");
+        DoublyLinkedListDemo();
 
     }
 
@@ -615,7 +618,7 @@ public class Main {
     }
 
     private static void linkedListDemo() {
-        ArrayList<String> structure = new ArrayList<String>();
+        LinkedList<String> structure = new LinkedList<String>();
         structure.add("a");
         print(structure);
         structure.add("a");
@@ -656,6 +659,73 @@ public class Main {
         structure.remove();
         print(structure);
     }
+    
+    /**
+     * How to use DoublyLinkedList demonstration
+     * and implements Compare Interface demonstration to
+     * use in any Objects
+     */
+    private static void DoublyLinkedListDemo() {
+    	DoublyLinkedList<String> structure = new DoublyLinkedList<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        print("addAt demonstration:");
+        structure.add("a");
+        structure.add("b");
+        structure.add("c");
+        print(structure.show());
+        structure.addAt(0, "add at 0");
+        print(structure.show());
+        structure.addAt(999, "add at 999 dont entry");
+        print(structure.show());
+        print(structure.show());
+        structure.addAt(structure.size()/2,"center add");
+        print(structure.show());
+        structure.addLast("add at Last");
+        print(structure.show());
+        print(structure);
+        print(structure.removeAt(5));
+        print(structure.show());
+        print(structure);
+    }
+    
 
 
     private static void output(String name) {
