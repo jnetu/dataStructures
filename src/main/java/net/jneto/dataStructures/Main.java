@@ -22,41 +22,44 @@ public class Main {
      * @param args - java -jar arguments
      */
     public static void main(String[] args) {
-//        output("Stack");
-//        arrayStackDemo();
-//
-//        output("Queue");
-//        arrayQueueDemo();
-//
-//        output("Bag");
-//        arrayBagDemo();
-//        output("ArrayList");
-//        arrayListDemon();
-//
-//        output("ArrayList additional methods ");
-//        advancedArrayListStructureDemo();
-//        output("Priority queue Array-min-heap based ");
-//        priorityQueueDemo();
-//
-//        output("Deque");
-//        arrayDequeDemo();
-//
-//        output("LinkedQueue");
-//        linkedQueueDemo();
+        output("Stack");
+        arrayStackDemo();
 
-        //output("linkedStack");
-        //linkedStackDemo();
+        output("Queue");
+        arrayQueueDemo();
 
-        //output("linkedBag");
-        //linkedBagDemo();
+        output("Bag");
+        arrayBagDemo();
+        output("ArrayList");
+        arrayListDemon();
 
-        //output("LinkedPriorityQueue");
-        //linkedPriorityQueueDemo();
+        output("ArrayList additional methods ");
+        advancedArrayListStructureDemo();
+        output("Priority queue Array-min-heap based ");
+        priorityQueueDemo();
 
-        //output("LinkedList");
-        //linkedListDemo();
+        output("Deque");
+        arrayDequeDemo();
+
+        output("LinkedQueue");
+        linkedQueueDemo();
+
+        output("linkedStack");
+        linkedStackDemo();
+
+        output("linkedBag");
+        linkedBagDemo();
+
+        output("LinkedPriorityQueue");
+        linkedPriorityQueueDemo();
+
+        output("LinkedList");
+        linkedListDemo();
     	
         output("DoublyLinkedList");
+        DoublyLinkedListDemo();
+        
+        output("CiurcularLinkedList");
         DoublyLinkedListDemo();
 
     }
@@ -723,6 +726,49 @@ public class Main {
         print(structure);
         print(structure.removeAt(5));
         print(structure.show());
+        print(structure);
+    }
+    
+    private static void circularLinkedListDemo() {
+    	CircularLinkedList<String> structure = new CircularLinkedList<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
         print(structure);
     }
     
