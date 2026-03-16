@@ -132,8 +132,55 @@ public class MyCustomComparator implements Comparator<CustomDataType> {
 ```
 You can then use your custom comparator class in the same way as shown above, providing it to the data structure that requires custom sorting.  
 
+## Big Integer Infinite Structure
 
+The `BigNumInteger` class, located in the `net.jneto.dataStructures.numbers` package, is a custom implementation of an arbitrary-precision integer. It allows you to store and manipulate extremely large numbers that exceed the limits of primitive Java types (like `long`). 
 
+Internally, it stores the numbers in "chunks" of base $10^9$, ensuring memory efficiency and fast arithmetic operations. One of its standout features is the ability to automatically format massive numbers with readable suffixes (e.g., Millions, Billions, Decillions, or even a Googol).
+
+### Available Operations
+- **Basic Arithmetic:** `add()`, `subtract()`, `multiply()`, `divide()`, and `mod()`.
+- **Power:** `pow(int exp)` to calculate large exponents.
+- **Formatting:** `toSuffix()` for abbreviations (e.g., "1.50 Bi") and `toSuffixFull()` for the complete word (e.g., "1.50 Bilhão").
+- **Utility:** `abs()`, `isZero()`, `isNegative()`, and `digitCount()`.
+
+### Example Usage
+
+Here is a demonstration of how to initialize, format, and perform arithmetic with astronomical numbers:
+
+```java
+import net.jneto.dataStructures.numbers.BigNumInteger;
+
+public class Main {
+    public static void main(String[] args) {
+        BigNumInteger million = new BigNumInteger(1_500_000L);
+        System.out.println(million.toSuffix()); // Output: 1.50 Mi
+        System.out.println(million.toSuffixFull()); // Output: 1.50 Milhão
+
+        // Astronomical Numbers
+        // Decillion: 10^33
+        BigNumInteger decillion = BigNumInteger.TEN.pow(33);
+        System.out.println("10^33 -> " + decillion.toSuffix()); 
+
+        // Googol: 10^100
+        BigNumInteger googol = BigNumInteger.TEN.pow(100);
+        System.out.println("10^100 -> " + googol.toSuffix()); 
+		
+        // 3.5 Googol
+        BigNumInteger threeAndHalfGoogol = googol.multiply(new BigNumInteger(3))
+                                       .add(googol.divide(new BigNumInteger(2)));
+        System.out.println("3.5 Googol -> " + threeAndHalfGoogol.toSuffix());
+
+        // Arithmetic with Huge Numbers
+        BigNumInteger a = BigNumInteger.TEN.pow(50);
+        BigNumInteger b = BigNumInteger.TEN.pow(50).multiply(new BigNumInteger(3));
+        
+        System.out.println("a + b = " + a.add(b).toSuffix());
+        System.out.println("b - a = " + b.subtract(a).toSuffix());
+        System.out.println("a * 2 = " + a.multiply(new BigNumInteger(2)).toSuffix());
+    }
+}
+```
 ## Releases
 
 Feel free to explore the provided releases to access JAR files for different versions of this library:
@@ -148,6 +195,12 @@ Feel free to explore the provided releases to access JAR files for different ver
 - **Release 1.2**:
     - [Download JAR file DataStructures-1.2-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.2)
     - Linked structures created. linked bag, stack, queue, list and priority queue.
+
+### ...
+
+- **Last Release! 1.6**:
+    - [Download JAR file DataStructures-1.6-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.6)
+    - New Big integer infinite Structure
 
 These releases provide pre-built JAR files for different versions of the library, allowing you to easily incorporate these data structures into your Java projects.
 

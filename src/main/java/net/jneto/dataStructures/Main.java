@@ -3,7 +3,7 @@ package net.jneto.dataStructures;
 import net.jneto.dataStructures.Comparator.BiggerIntegerComparator;
 import net.jneto.dataStructures.Comparator.BiggerStringLengthComparator;
 import net.jneto.dataStructures.Comparator.Comparator;
-import net.jneto.dataStructures.numbers.BigNumInterger;
+import net.jneto.dataStructures.numbers.BigNumInteger;
 
 /**
  * Main Function to see functions DataStructure created
@@ -791,7 +791,7 @@ public class Main {
 
         print("=== Sufixos básicos ===");
         for (long v : demos) {
-        	BigNumInterger n = new BigNumInterger(v);
+        	BigNumInteger n = new BigNumInteger(v);
             System.out.printf("%-25s → %-15s (%s)%n",
                 n.toString(), n.toSuffix(), n.toSuffixFull());
         }
@@ -799,34 +799,34 @@ public class Main {
         print("\n--------- Números astronômicos ---------");
 
         // Decilhão: 10^33
-        BigNumInterger decilhao = BigNumInterger.TEN.pow(33);
+        BigNumInteger decilhao = BigNumInteger.TEN.pow(33);
         print("10^33  → " + decilhao.toSuffix() + " (" + decilhao.toSuffixFull() + ")");
 
         // Googol: 10^100
-        BigNumInterger googol = BigNumInterger.TEN.pow(100);
+        BigNumInteger googol = BigNumInteger.TEN.pow(100);
         print("10^100 → " + googol.toSuffix() + " (" + googol.toSuffixFull() + ")");
 
         // 3.5 Googol
-        BigNumInterger tresEMeioGoogol = googol.multiply(new BigNumInterger(3))
-                                       .add(googol.divide(new BigNumInterger(2)));
+        BigNumInteger tresEMeioGoogol = googol.multiply(new BigNumInteger(3))
+                                       .add(googol.divide(new BigNumInteger(2)));
         print("3.5 Googol → " + tresEMeioGoogol.toSuffix());
 
         // 1000 zeros (10^1000 - greater than a centillion, without a special suffix)
-        BigNumInterger milZeros = BigNumInterger.TEN.pow(1000);
+        BigNumInteger milZeros = BigNumInteger.TEN.pow(1000);
         print("10^1000 → " + milZeros.toSuffix()
             + "  [sem sufixo, mostra número completo se < 1K]");
         print("Dígitos: " + milZeros.digitCount());
 
         print("\n------------ Aritmética ---------");
-        BigNumInterger a = BigNumInterger.TEN.pow(50);
-        BigNumInterger b = BigNumInterger.TEN.pow(50).multiply(new BigNumInterger(3));
+        BigNumInteger a = BigNumInteger.TEN.pow(50);
+        BigNumInteger b = BigNumInteger.TEN.pow(50).multiply(new BigNumInteger(3));
         print("a = " + a.toSuffix());
         print("b = " + b.toSuffix());
         print("a + b = " + a.add(b).toSuffix());
         print("b - a = " + b.subtract(a).toSuffix());
-        print("a * 2 = " + a.multiply(new BigNumInterger(2)).toSuffix());
-        print("b * 3 = " + b.multiply(new BigNumInterger(3)).toSuffix());
-        print("b * 30 = " + b.multiply(new BigNumInterger(30)).toSuffix());
+        print("a * 2 = " + a.multiply(new BigNumInteger(2)).toSuffix());
+        print("b * 3 = " + b.multiply(new BigNumInteger(3)).toSuffix());
+        print("b * 30 = " + b.multiply(new BigNumInteger(30)).toSuffix());
     }
     
 

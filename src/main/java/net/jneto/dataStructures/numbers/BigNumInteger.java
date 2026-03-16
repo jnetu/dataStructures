@@ -8,7 +8,7 @@ import java.util.Objects;
  *  An arbitrary-precision integer stored in base 10^9.
  * Supports display with suffixes (Bi, T, Dec, Googol , etc )
  */
-public class BigNumInterger implements Comparable<BigNumInterger> {
+public class BigNumInteger implements Comparable<BigNumInteger> {
     /** Internally used base: each "chunk" stores up to 9 decimal digits. */
     private static final long BASE       = 1_000_000_000L;
     private static final int  BASE_DIGS  = 9;
@@ -66,15 +66,15 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
 
     // --- CONSTANTS ------------------------------------------------
 
-    public static final BigNumInterger ZERO = new BigNumInterger("0");
-    public static final BigNumInterger ONE  = new BigNumInterger("1");
-    public static final BigNumInterger TEN  = new BigNumInterger("10");
+    public static final BigNumInteger ZERO = new BigNumInteger("0");
+    public static final BigNumInteger ONE  = new BigNumInteger("1");
+    public static final BigNumInteger TEN  = new BigNumInteger("10");
 
     // ── Builders ────────────────────────────────────────────────────────
 
     /** 
      * Build from a decimal string (ex: 123456789) */
-    public BigNumInterger(String number) {
+    public BigNumInteger(String number) {
         chunks   = new ArrayList<>();
         number   = number.strip();
         negative = number.startsWith("-");
@@ -93,14 +93,14 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
 
     /** 
      * Build from a long */
-    public BigNumInterger(long value) {
+    public BigNumInteger(long value) {
         this(Long.toString(value));
     }
 
     /** 
      * Internal builder using pre-made chunks
      * */
-    private BigNumInterger(ArrayList<Integer> chunks, boolean negative) {
+    private BigNumInteger(ArrayList<Integer> chunks, boolean negative) {
         this.chunks   = chunks;
         this.negative = negative;
         trim();
@@ -108,26 +108,26 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
 
     // --- Arithmetic ---------------------------------------------------------------------------
 
-    public BigNumInterger add(BigNumInterger other) {
+    public BigNumInteger add(BigNumInteger other) {
         // Same - sum magnitudes
         if (this.negative == other.negative) {
-            return new BigNumInterger(addMagnitudes(this.chunks, other.chunks), this.negative);
+            return new BigNumInteger(addMagnitudes(this.chunks, other.chunks), this.negative);
         }
         // odd signs - subtract the smaller from the larger.
         int cmp = compareMagnitudes(this.chunks, other.chunks);
         if (cmp == 0) return ZERO;
         if (cmp > 0) {
-            return new BigNumInterger(subMagnitudes(this.chunks, other.chunks), this.negative);
+            return new BigNumInteger(subMagnitudes(this.chunks, other.chunks), this.negative);
         }
-        return new BigNumInterger(subMagnitudes(other.chunks, this.chunks), other.negative);
+        return new BigNumInteger(subMagnitudes(other.chunks, this.chunks), other.negative);
     }
 
-    public BigNumInterger subtract(BigNumInterger other) {
-    	BigNumInterger neg = new BigNumInterger(new ArrayList<>(other.chunks), !other.negative);
+    public BigNumInteger subtract(BigNumInteger other) {
+    	BigNumInteger neg = new BigNumInteger(new ArrayList<>(other.chunks), !other.negative);
         return this.add(neg);
     }
 
-    public BigNumInterger multiply(BigNumInterger other) {
+    public BigNumInteger multiply(BigNumInteger other) {
         int n = this.chunks.size(), m = other.chunks.size();
         ArrayList<Integer> result = new ArrayList<>();
         for (int i = 0; i < n + m; i++) result.add(0);
@@ -143,11 +143,11 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
             }
             if (carry > 0) result.set(i + m, (int)(result.get(i + m) + carry));
         }
-        return new BigNumInterger(result, this.negative != other.negative);
+        return new BigNumInteger(result, this.negative != other.negative);
     }
 
     /** Interger division */
-    public BigNumInterger divide(BigNumInterger other) {
+    public BigNumInteger divide(BigNumInteger other) {
         if (other.isZero()) throw new ArithmeticException("Divisão por zero");
         if (other.chunks.size() == 1) {
             return divideByLong(other.chunks.get(0), this.negative != other.negative);
@@ -157,18 +157,18 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
     }
 
     /** Division Remainders */
-    public BigNumInterger mod(BigNumInterger other) {
+    public BigNumInteger mod(BigNumInteger other) {
         return this.subtract(this.divide(other).multiply(other));
     }
 
     /** 
      * Power - no negative exponent
      */
-    public BigNumInterger pow(int exp) {
+    public BigNumInteger pow(int exp) {
         if (exp < 0) throw new ArithmeticException("Expoente negativo não suportado");
         if (exp == 0) return ONE;
-        BigNumInterger base   = this;
-        BigNumInterger result = ONE;
+        BigNumInteger base   = this;
+        BigNumInteger result = ONE;
         while (exp > 0) {
             if ((exp & 1) == 1) result = result.multiply(base);
             base = base.multiply(base);
@@ -181,7 +181,7 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
 
     public boolean isZero()     { return chunks.size() == 1 && chunks.get(0) == 0; }
     public boolean isNegative() { return negative && !isZero(); }
-    public BigNumInterger  abs()        { return new BigNumInterger(new ArrayList<>(chunks), false); }
+    public BigNumInteger  abs()        { return new BigNumInteger(new ArrayList<>(chunks), false); }
 
     /** Number of decimal digits (without the sign). */
     public int digitCount() {
@@ -232,7 +232,7 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
     // --- compares ----------------------------------------------------------
 
     @Override
-    public int compareTo(BigNumInterger other) {
+    public int compareTo(BigNumInteger other) {
         if (this.negative != other.negative) return this.negative ? -1 : 1;
         int cmp = compareMagnitudes(this.chunks, other.chunks);
         return this.negative ? -cmp : cmp;
@@ -240,7 +240,7 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof BigNumInterger b)) return false;
+        if (!(o instanceof BigNumInteger b)) return false;
         return compareTo(b) == 0;
     }
 
@@ -297,7 +297,7 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
         return 0;
     }
 
-    private BigNumInterger divideByLong(long divisor, boolean resultNegative) {
+    private BigNumInteger divideByLong(long divisor, boolean resultNegative) {
         ArrayList<Integer> result = new ArrayList<>();
         long rem = 0;
         for (int i = chunks.size() - 1; i >= 0; i--) {
@@ -305,24 +305,24 @@ public class BigNumInterger implements Comparable<BigNumInterger> {
             result.add(0, (int)(cur / divisor));
             rem = cur % divisor;
         }
-        return new BigNumInterger(result, resultNegative);
+        return new BigNumInteger(result, resultNegative);
     }
 
     /** Big division for large BigNumInterger divisors. */
-    private static BigNumInterger divLong(BigNumInterger dividend, BigNumInterger divisor, boolean resultNeg) {
-    	BigNumInterger quotient  = ZERO;
-    	BigNumInterger remainder = ZERO;
+    private static BigNumInteger divLong(BigNumInteger dividend, BigNumInteger divisor, boolean resultNeg) {
+    	BigNumInteger quotient  = ZERO;
+    	BigNumInteger remainder = ZERO;
         String digits    = dividend.toString();
         for (char ch : digits.toCharArray()) {
-            remainder = remainder.multiply(TEN).add(new BigNumInterger(ch - '0'));
+            remainder = remainder.multiply(TEN).add(new BigNumInteger(ch - '0'));
             // remainder (0–9)
             int q = 0;
-            BigNumInterger tmp = divisor;
+            BigNumInteger tmp = divisor;
             while (tmp.compareTo(remainder) <= 0) { tmp = tmp.add(divisor); q++; }
-            quotient  = quotient.multiply(TEN).add(new BigNumInterger(q));
-            remainder = remainder.subtract(divisor.multiply(new BigNumInterger(q)));
+            quotient  = quotient.multiply(TEN).add(new BigNumInteger(q));
+            remainder = remainder.subtract(divisor.multiply(new BigNumInteger(q)));
         }
-        return new BigNumInterger(new ArrayList<>(quotient.chunks), resultNeg);
+        return new BigNumInteger(new ArrayList<>(quotient.chunks), resultNeg);
     }
 
     /**
