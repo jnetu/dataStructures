@@ -71,7 +71,7 @@ public class Bag<ITEM> implements DataStructure<ITEM> {
      */
     @Override
     public int size() {
-        return bag.length;
+        return size;
     }
 
     /**
