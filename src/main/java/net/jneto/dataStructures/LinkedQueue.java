@@ -131,23 +131,19 @@ public class LinkedQueue<ITEM> implements DataStructure<ITEM> {
     public String showReverse() {
         StringBuilder builder = new StringBuilder();
         boolean isFirst = true;
-        LinkedQueue<ITEM> auxQueue = new LinkedQueue<>();
-        ITEM[] elements = (ITEM[]) new Object[size];
+        LinkedStack<ITEM> auxStack = new LinkedStack<>();
         ITEM element;
-        int index = 0;
         Node<ITEM> current = first;
 
-        // Remove and store elements in an array
+        // Remove and store elements in the auxiliary stack
         while (current != null) {
-            elements[index] = current.item;
+            auxStack.add(current.item);
             current = current.next;
-            auxQueue.add(elements[index]);
-            index++;
         }
 
         // Build the reverse string
-        while (!auxQueue.isEmpty()) {
-            element = auxQueue.remove();
+        while (!auxStack.isEmpty()) {
+            element = auxStack.remove();
             if (isFirst) {
                 builder.append(element);
                 isFirst = false;
