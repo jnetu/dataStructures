@@ -65,6 +65,9 @@ public class Main {
         
         output("BigInterger");
         BigIntergerDemo();
+        
+        output("linkedDequeDemo");
+        linkedDequeDemo();
 
     }
 
@@ -775,6 +778,66 @@ public class Main {
         structure.remove();
         print(structure);
     }
+    
+    private static void linkedDequeDemo() {
+    	LinkedDeque<String> structure = new LinkedDeque<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure.remove());
+        print(structure.remove());
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.addFront("frontA");
+        structure.addFront("frontB");
+        structure.addFront("frontC");
+        structure.addEnd("endA");
+        structure.addEnd("endB");
+        structure.addEnd("endC");
+        structure.addFront("frontd");
+        structure.addFront("fronte");
+        structure.addFront("frontf");
+        print(structure.show());
+        print(structure.removeFront());
+        print(structure.show());
+        print(structure.removeFront());
+        print(structure.show());
+        print(structure.showReverse());
+        print(structure.removeEnd());
+    }
+    
     
     /**
      * How to use the old new Big Interger
