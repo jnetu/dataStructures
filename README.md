@@ -195,12 +195,15 @@ Feel free to explore the provided releases to access JAR files for different ver
 - **Release 1.2**:
     - [Download JAR file DataStructures-1.2-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.2)
     - Linked structures created. linked bag, stack, queue, list and priority queue.
+- **Release 1.6**:
+    - [Download JAR file DataStructures-1.2-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.6)
+    - New Big integer infinite Structure
 
 ### ...
 
-- **Last Release! 1.6**:
-    - [Download JAR file DataStructures-1.6-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.6)
-    - New Big integer infinite Structure
+- **Last Release! 1.7**:
+    - [Download JAR file DataStructures-1.7-release.jar](https://github.com/jnetu/dataStructures/releases/tag/release-1.7)
+    - New Set interface & HashSet Data Structure!
 
 These releases provide pre-built JAR files for different versions of the library, allowing you to easily incorporate these data structures into your Java projects.
 
@@ -231,9 +234,9 @@ make sure you have git installed and PATH configured
    .\gradlew build
    ```
 
-2. Will create a .jar file into build/libs/DataStructures-1.0-release.jar
+2. Will create a .jar file into build/libs/DataStructures-1.7-release.jar
    ```bash
-   java -jar .\libs\DataStructures-1.1-release.jar
+   java -jar .\libs\DataStructures-1.7-release.jar
    ```
    this command will show a short demonstration main
 
@@ -246,7 +249,7 @@ make sure you have git installed and PATH configured
 
 2. To run the project, use the following Gradle command:
    ```bash
-   java -jar /libs/DataStructures-1.1-release.jar
+   java -jar /libs/DataStructures-1.7-release.jar
    ```
 
 ## Create javadoc
