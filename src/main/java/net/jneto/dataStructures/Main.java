@@ -68,11 +68,11 @@ public class Main {
         
         output("linkedDequeDemo");
         linkedDequeDemo();
+        
+        output("HashSetDemo");
+        HashSetDemo();
 
     }
-
-
-
 
     private static void arrayQueueDemo() {
         Queue<String> structure = new Queue<String>();
@@ -836,6 +836,58 @@ public class Main {
         print(structure.show());
         print(structure.showReverse());
         print(structure.removeEnd());
+    }
+    
+    private static void HashSetDemo() {
+        HashSet<String> structure = new HashSet<String>();
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure);
+        structure.add("a");
+        print(structure.show());
+        print(structure);
+        structure.add("b");
+        print(structure.show());
+        print(structure);
+        structure.add("c");
+        print(structure.show());
+        print(structure);
+        structure.add("d");
+        print(structure);
+        structure.add("e");
+        print(structure);
+        structure.add("f");
+        print("show:");
+        print(structure.show());
+        print("show Reverse:");
+        print(structure.showReverse());
+        print("peek:");
+        print(structure.peek());
+        print("contains a: " + structure.contains("a"));
+        print("contains z: " + structure.contains("z"));
+        print("removed a: " + structure.remove("a"));
+        print(structure.show());
+        print("removed z: " + structure.remove("z"));
+        print(structure.show());
+        print("removed: " + structure.remove());
+        print("removed: " + structure.remove());
+        print("show:");
+        print(structure.show());
+        print(structure);
+        structure.add("g");
+        structure.add("g");
+        structure.add("h");
+        print(structure.show());
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
+        structure.remove();
+        structure.remove();
+        structure.remove();
+        print(structure);
     }
     
     
